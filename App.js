@@ -1,13 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import MapView, { PROVIDER_DEFAULT, Marker } from 'react-native-maps';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MapView
+      provider={PROVIDER_DEFAULT}
+      style={styles.map}
+      initialRegion={{
+        latitude: 43.544670,
+        longitude: -80.247584,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    >
+      <Marker 
+        title={"Cornerstone"}
+        coordinate={{
+          latitude: 43.544670,
+          longitude: -80.247584,
+        }}
+      />
+    </MapView>
   );
 }
 
@@ -18,4 +32,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  map: {
+    height: '100%',
+    width: '100%',
+  }
 });
