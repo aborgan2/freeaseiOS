@@ -1,0 +1,12 @@
+{
+  "name": "freease",
+  "displayName": "freease",
+  "expo": {
+    "name": "freease",
+    "slug": "freease",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
