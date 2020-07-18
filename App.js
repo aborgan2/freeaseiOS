@@ -1,42 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_DEFAULT } from 'react-native-maps';
 import { FreebMarker } from './components/FreebMarker';
-// import firestore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 
 export default function App() {
+  const [stores, updateStores] = useState([]);
 
-  const testData = [
-    {
-      title: "Cornerstone",
-      latitude: 43.544670,
-      longitude: -80.247584,
-      type: "0",
-    },
-    {
-      title: "Sweet! Ice Cream, Candy & Chocolate",
-      latitude: 43.543836,
-      longitude: -80.249014,
-      type: "1",
-    },
-    {
-      title: "Food Example Store",
-      latitude: 43.541999,
-      longitude: -80.250123,
-      type: "2",
-    },
-    {
-      title: "Generic Example Store",
-      latitude: 43.545012,
-      longitude: -80.243000,
-    }
-  ];
+  useEffect(() => {
+    getStores();
+  }, []);
 
-  // printStore = async () => {
-  //   const stores = await firestore().collection('storesTest').doc().get();
-  //   console.log(stores);
-  // }
-  // printStore();
+  const getStores = async () => {
+    const snapshot = await firestore().collection('storesTest').get();
+    updateStores(snapshot.docs.map(doc => {
+      return {
+        latitude: Number(doc.data().Latitude),
+        longitude: Number(doc.data().Longitude),
+        markerType: Number(doc.data().Icon),
+        imageUrl: doc.data().ImageUrl,
+        description: doc.data().Description,
+        name: doc.data().Name,
+        address: doc.data().Address,
+        freeb: doc.data().Freeb,
+      };
+    }));
+  }
   
   return (
     <MapView
@@ -49,7 +38,10 @@ export default function App() {
         longitudeDelta: 0.0221,
       }}
     >
-      { testData.map(data => <FreebMarker {...data} key={data.title}/>)}
+      { stores.length === 0 ? null : stores.map((data, index) => {
+        console.log(data);
+        return <FreebMarker {...data} key={index}/>
+      })}
     </MapView>
   );
 }
