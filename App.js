@@ -1,8 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_DEFAULT, Marker } from 'react-native-maps';
+import firestore from '@react-native-firebase/firestore';
 
 export default function App() {
+
+  printStore = async () => {
+    const stores = await firestore().collection('storesTest').doc().get();
+    console.log(stores);
+  }
+
+  printStore();
   return (
     <MapView
       provider={PROVIDER_DEFAULT}
