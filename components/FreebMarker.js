@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import { Marker } from 'react-native-maps';
+import { StyleSheet, Image, Text } from 'react-native';
+import { Marker, Callout } from 'react-native-maps';
 import Coffee from '../Assets/Coffee_Marker.png';
 import Candy from '../Assets/Candy_Marker.png';
 import Food from '../Assets/Food_Marker.png';
@@ -10,11 +10,11 @@ export class FreebMarker extends React.Component {
 
     selectMarker(type) {
         switch(type) {
-            case '0':
+            case 1:
                 return Coffee;
-            case '1':
+            case 2:
                 return Candy;
-            case '2':
+            case 3:
                 return Food;
             default:
                 return Generic;
@@ -22,16 +22,21 @@ export class FreebMarker extends React.Component {
     }
 
     render() {
-        const { title, latitude, longitude, type } = this.props;
+        const { name, latitude, longitude, markerType, imageUrl, description } = this.props;
         return (
             <Marker 
-                title={title}
+                title={name}
                 coordinate={{
                 latitude: latitude,
                 longitude: longitude,
                 }}
             >
-                <Image source={this.selectMarker(type)} style={styles.image} />
+                <Image source={this.selectMarker(markerType)} style={styles.image} />
+                <Callout>
+                    <Image source={{ uri: imageUrl }} style={{ width: 100, height: 100 }}/>
+                    <Text>{name}</Text>
+                    <Text>{description}</Text>
+                </Callout>
             </Marker>
         );
     }
