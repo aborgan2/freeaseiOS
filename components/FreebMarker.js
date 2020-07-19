@@ -8,7 +8,7 @@ import Food from '../Assets/Food_Marker.png';
 import Generic from '../Assets/Generic_Marker.png';
 
 export const FreebMarker = ({
-    name, latitude, longitude, markerType, imageUrl, description
+    freeb, name, latitude, longitude, markerType, imageUrl, description
 }) => (
   <Marker 
     title={name}
@@ -18,7 +18,7 @@ export const FreebMarker = ({
     }}
   >
     <Image source={selectMarker(markerType)} style={styles.marker} />
-    <FreebCallout name={name} imageUrl={imageUrl} description={description} />
+    <FreebCallout imageUrl={imageUrl} freeb={freeb} name={name}/>
   </Marker>
 );
 
