@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { Marker } from 'react-native-maps';
 import { FreebCallout } from './FreebCallout';
-import Coffee from '../Assets/Coffee_Marker.png';
-import Candy from '../Assets/Candy_Marker.png';
-import Food from '../Assets/Food_Marker.png';
-import Generic from '../Assets/Generic_Marker.png';
+import Coffee from '../../Assets/Coffee_Marker.png';
+import Candy from '../../Assets/Candy_Marker.png';
+import Food from '../../Assets/Food_Marker.png';
+import Generic from '../../Assets/Generic_Marker.png';
 
 export const FreebMarker = ({
     freeb, name, latitude, longitude, markerType, imageUrl, description
