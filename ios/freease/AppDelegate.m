@@ -11,6 +11,7 @@
 #import <UMCore/UMModuleRegistryProvider.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <Firebase.h>
+#import <RNSplashScreen.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -62,7 +63,7 @@ static void InitializeFlipper(UIApplication *application) {
   #endif
 
   [super application:application didFinishLaunchingWithOptions:launchOptions];
-
+  [RNSplashScreen show];
   return YES;
 }
 
