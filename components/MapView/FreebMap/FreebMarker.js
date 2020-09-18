@@ -2,13 +2,13 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { Marker } from 'react-native-maps';
 import { FreebCallout } from './FreebCallout';
-import Coffee from '../../Assets/Coffee_Marker.png';
-import Candy from '../../Assets/Candy_Marker.png';
-import Food from '../../Assets/Food_Marker.png';
-import Generic from '../../Assets/Generic_Marker.png';
+import Coffee from '../../../Assets/Coffee_Marker.png';
+import Candy from '../../../Assets/Candy_Marker.png';
+import Food from '../../../Assets/Food_Marker.png';
+import Generic from '../../../Assets/Generic_Marker.png';
 
 export const FreebMarker = ({
-    freeb, name, latitude, longitude, markerType, imageUrl, description
+    freeb, name, latitude, longitude, icon, imageUrl, description
 }) => (
   <Marker 
     title={name}
@@ -17,7 +17,7 @@ export const FreebMarker = ({
       longitude: longitude,
     }}
   >
-    <Image source={selectMarker(markerType)} style={styles.marker} />
+    <Image source={selectMarker(icon)} style={styles.icon} />
     <FreebCallout imageUrl={imageUrl} freeb={freeb} name={name}/>
   </Marker>
 );
@@ -36,7 +36,7 @@ const selectMarker = type => {
 }
 
 const styles = StyleSheet.create({
-  marker: {
+  icon: {
     aspectRatio: 361/531,
     width: 75,
     height: 75,

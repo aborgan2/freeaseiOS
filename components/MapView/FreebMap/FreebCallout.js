@@ -6,10 +6,10 @@ export const FreebCallout = ({
     freeb, imageUrl, name
 }) => (
     <Callout tooltip style={styles.callout}>
-        <Image source={{ uri: imageUrl }} style={styles.imageUrl}/>
+        { imageUrl ? <Image source={{ uri: imageUrl }} style={styles.imageUrl}/> : null }
         <View style={styles.calloutTextContent}>
-        <Text style={styles.text}>{freeb}</Text>
-        <Text style={styles.subText}>Free at {name}</Text>
+          <Text style={styles.text}>{freeb || ''}</Text>
+          <Text style={styles.subText}>{name ? `Free at ${name}` : null}</Text>
         </View>
     </Callout>
 );

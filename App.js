@@ -20,6 +20,6 @@ export default function App() {
     SplashScreen.hide();
   }, []);
 
-  if(error) return <Error error={error} refresh={init}/>;
+  if(error) return <Error error={error} refresh={init} />;
   else return stores.length ? <MapView stores={stores} /> : null;
 }

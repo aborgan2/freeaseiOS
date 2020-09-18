@@ -3,16 +3,5 @@ import firestore from '@react-native-firebase/firestore';
 export const getStores = async () => {
   const snapshot = await firestore().collection('storesTest').get();
   if(!Array.isArray(snapshot.docs)) throw new Error("Unable to find Freebies");
-  return snapshot.docs.map(doc => docApiMap(doc));
+  return snapshot.docs.map(doc => doc.data());
 };
-
-export const docApiMap = doc => ({
-  latitude: Number(doc.data().Latitude),
-  longitude: Number(doc.data().Longitude),
-  markerType: Number(doc.data().Icon),
-  imageUrl: doc.data().ImageUrl,
-  description: doc.data().Description,
-  name: doc.data().Name,
-  address: doc.data().Address,
-  freeb: doc.data().Freeb,
-});
